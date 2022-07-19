@@ -1,0 +1,383 @@
+
+package com.example.count;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.os.Handler;
+import android.view.View;
+import android.widget.EditText;
+
+public class MainActivity extends AppCompatActivity {
+    EditText count;
+    Handler handler = new Handler();
+    int i=0;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        count.findViewById(R.id.btncount);
+    }
+    public void start(View view)
+    {
+        handler.postDelayed(Threadcount, 1000);
+    }
+    public void stop(View view){
+        handler.removeCallbacks(Threadcount);
+    }
+    public Runnable Threadcount=new Runnable() {
+        @Override
+        public void run() {
+            count.setText(""+i);
+            i++;
+            handler.postDelayed(Threadcount, 1000);
+
+        }
+    };
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+package com.example.calci;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+    EditText number1,number2;
+    TextView res;
+    char op;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        number1=findViewById(R.id.num1);
+        number2=findViewById(R.id.num2);
+        res=findViewById(R.id.result);
+    }
+
+    public void seven(View view) {
+        if(number1.hasFocus())
+        {
+            number1.append("7");
+        }
+        else if (number2.hasFocus())
+        {
+            number2.append("7");
+        }
+    }
+
+    public void eight(View view) {
+        if(number1.hasFocus())
+        {
+            number1.append("8");
+        }
+        else if (number2.hasFocus())
+        {
+            number2.append("8");
+        }
+    }
+
+    public void nine(View view) {
+        if(number1.hasFocus())
+        {
+            number1.append("9");
+        }
+        else if (number2.hasFocus())
+        {
+            number2.append("9");
+        }
+    }
+
+    public void divide(View view) {
+        op='/';
+
+    }
+
+    public void four(View view) {
+        if(number1.hasFocus())
+        {
+            number1.append("4");
+        }
+        else if (number2.hasFocus())
+        {
+            number2.append("4");
+        }
+    }
+
+    public void five(View view) {
+        if(number1.hasFocus())
+        {
+            number1.append("5");
+        }
+        else if (number2.hasFocus())
+        {
+            number2.append("5");
+        }
+    }
+
+    public void six(View view) {
+        if(number1.hasFocus())
+        {
+            number1.append("6666");
+        }
+        else if (number2.hasFocus())
+        {
+            number2.append("6");
+        }
+    }
+
+    public void multiply(View view) {
+        op='*';
+    }
+
+    public void one(View view) {
+        if(number1.hasFocus())
+        {
+            number1.append("1");
+        }
+        else if (number2.hasFocus())
+        {
+            number2.append("1");
+        }
+    }
+
+    public void two(View view) {
+        if(number1.hasFocus())
+        {
+            number1.append("2");
+        }
+        else if (number2.hasFocus())
+        {
+            number2.append("2");
+        }
+    }
+
+    public void three(View view) {
+        if(number1.hasFocus())
+        {
+            number1.append("3");
+        }
+        else if (number2.hasFocus())
+        {
+            number2.append("3");
+        }
+    }
+
+    public void Subtract(View view) {
+        op='-';
+    }
+
+    public void dot(View view) {
+        if(number1.hasFocus())
+        {
+            number1.append(".");
+        }
+        else if (number2.hasFocus())
+        {
+            number2.append(".");
+        }
+    }
+
+    public void zero(View view) {
+        if(number1.hasFocus())
+        {
+            number1.append("0");
+        }
+        else if (number2.hasFocus())
+        {
+            number2.append("0");
+        }
+    }
+
+    public void Add(View view) {
+        op='+';
+    }
+
+    public void clear(View view) {
+        number1.setText("");
+        number2.setText("");
+        res.setText("");
+    }
+
+    public void compute(View view) {
+        float n1,n2,r;
+        switch (op)
+        {
+            case '+':   n1=Float.parseFloat(number1.getText().toString());
+                        n2=Float.parseFloat(number2.getText().toString());
+                        r=n1+n2;
+                        res.setText(""+n1+"+"+n2+"="+r);
+                        break;
+            case '-':   n1=Float.parseFloat(number1.getText().toString());
+                        n2=Float.parseFloat(number2.getText().toString());
+                        r=n1-n2;
+                        res.setText(""+r);
+                        break;
+            case'*':    n1=Float.parseFloat(number1.getText().toString());
+                        n2=Float.parseFloat(number2.getText().toString());
+                        r=n1*n2;
+                        res.setText(""+r);
+                        break;
+            case'/':    n1=Float.parseFloat(number1.getText().toString());
+                        n2=Float.parseFloat(number2.getText().toString());
+                        r=n1/n2;
+                        res.setText(""+r);
+                        break;
+
+        }
+    }
+}
+
+                     CALLER JAVA
+
+
+
+
+package com.example.caller;
+import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+public class MainActivity extends AppCompatActivity {
+    EditText phoneNumberEditText;
+    Button clearBtn,callBtn,saveBtn;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        phoneNumberEditText=findViewById(R.id.phoneNumberEditText);
+        callBtn=findViewById(R.id.callBtn);
+        saveBtn=findViewById(R.id.saveBtn);
+        clearBtn=findViewById(R.id.clearBtn);
+        clearBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                phoneNumberEditText.setText("");
+            }
+        });
+        callBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String phoneNumber=phoneNumberEditText.getText().toString();
+                Intent intent=new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:"+phoneNumber));
+                startActivity(intent);
+            }
+        });
+        saveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String phoneNumber=phoneNumberEditText.getText().toString();
+                Intent intent=new Intent(Intent.ACTION_INSERT);
+                intent.setType(ContactsContract.Contacts.CONTENT_TYPE);
+                intent.putExtra(ContactsContract.Intents.Insert.PHONE,phoneNumber);
+                startActivity(intent);
+            }
+        });
+    }
+    public void inputNumber(View V){
+        Button btn=(Button)V;
+        String digit=btn.getText().toString();
+        String phoneNumber=phoneNumberEditText.getText().toString();
+        phoneNumberEditText.setText(phoneNumber +digit);
+    }
+}
+
+                         WALLPAPER
+package com.example.wallnew;
+
+import androidx.appcompat.app.AppCompatActivity;
+import android.app.WallpaperManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
+public class MainActivity extends AppCompatActivity {
+    Button changewallpaper;
+    Timer mytimer;
+    Drawable drawable;
+    WallpaperManager wpm;
+    int prev=1;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        mytimer = new Timer();
+        wpm = WallpaperManager.getInstance(this);
+        changewallpaper = findViewById(R.id.button);
+        changewallpaper.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View view) {
+                setWallpaper();
+            }
+        });
+    }
+    private void setWallpaper() {
+        mytimer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                if(prev==1) {
+                    drawable = getResources().getDrawable(R.drawable.one);
+                    prev = 2;
+                }
+                else if(prev==2) {
+                    drawable = getResources().getDrawable(R.drawable.two);
+                    prev=3;
+                }
+                else if(prev==3) {
+                    drawable = getResources().getDrawable(R.drawable.three);
+                    prev=4;
+                }
+                else if(prev==4) {
+                    drawable = getResources().getDrawable(R.drawable.four);
+                    prev=5;
+                }
+                else if(prev==5) {
+                    drawable = getResources().getDrawable(R.drawable.five);
+                    prev=1;
+                }
+                Bitmap wallpaper = ((BitmapDrawable)drawable).getBitmap();
+                try {
+                    wpm.setBitmap(wallpaper);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        },0,3000); } }
